@@ -1,4 +1,4 @@
-import { GET_CARDS,  SET_ACTIVE_CARDS } '../actions/actionTypes';
+import { GET_CARDS,  SET_ACTIVE_CARDS } from '../actions/actionTypes';
 
 const initialState = {
   active: [],
