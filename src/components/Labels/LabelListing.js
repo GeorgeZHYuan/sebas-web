@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
-import { Label } from 'components'
+import Label from './Label'
 
 const LLContainer = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ class LabelListing extends React.Component {
     return <LLContainer>
       <LLTitle>{this.state.sectionTitle}</LLTitle>
 
-      {this.state.labels.length !== 0 && 
+      {this.state.labels.length !== 0 &&
         <LLListings>
           {this.state.labels.map((item, i) => {
             return <Label color={item.color} title={item.title}/>

@@ -1,0 +1,2 @@
+export const GET_LABELS = 'GET_LABELS';
+export const SET_ACTIVE_LABELS = 'SET_ACTIVE_LABELS';

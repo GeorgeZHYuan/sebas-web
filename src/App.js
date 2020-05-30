@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
 
+import { Provider } from 'react-redux'
+import store from './store'
+
 import {
   LabelMenu,
   Workspace
@@ -16,10 +19,12 @@ const AppContainer = styled.div`
 
 function App() {
   return (
-    <AppContainer>
-      <LabelMenu />
-      <Workspace />
-    </AppContainer>
+    <Provider store={store}>
+      <AppContainer>
+        <LabelMenu />
+        <Workspace />
+      </AppContainer>
+    </Provider>
   );
 }
 
