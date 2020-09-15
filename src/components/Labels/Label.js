@@ -19,7 +19,7 @@ const LabelTitle = styled.div`
 const Label = (props) => {
   return <LabelContainer>
     <Circle style={{backgroundColor: `${props.color}` }} />
-    <LabelTitle>{props.title}</LabelTitle>
+    <LabelTitle>{props.name}</LabelTitle>
   </LabelContainer>
 }
 

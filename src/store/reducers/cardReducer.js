@@ -10,12 +10,12 @@ export default function(state = initialState, action) {
     case GET_CARDS:
       return {
         ...state,
-        active: action.payload
+        available: action.payload
       };
     case SET_ACTIVE_CARDS:
       return {
         ...state,
-        available: action.payload
+        active: action.payload
       };
     default:
       return state;

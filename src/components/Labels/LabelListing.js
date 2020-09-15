@@ -46,7 +46,10 @@ class LabelListing extends React.Component {
       {this.state.labels.length !== 0 &&
         <LLListings>
           {this.state.labels.map((item, i) => {
-            return <Label color={item.color} title={item.title}/>
+            return <Label
+              key={item._id}
+              color={item.color}
+              name={item.name}/>
           })}
         </LLListings>
       }

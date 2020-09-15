@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 import colors from 'styles'
 
 import LabelListing from './LabelListing'
+import { getLabels } from 'store/actions/labelActions'
 
 const LabelMenuContainer = styled.div`
   min-width: 150px;
@@ -22,67 +24,37 @@ const LabelMenuContainer = styled.div`
   }
 `
 
-const data1 = {
-  sectionTitle: "test title 1",
-  labels: [
-    {
-      title: 'test label 1',
-      color: colors.blue
-    },
-    {
-      title: 'test label 2',
-      color: colors.red
-    },
-    {
-      title: 'test label 3',
-      color: colors.green
-    },
-  ]
-}
-
-const data2 = {
-  sectionTitle: "test title 2",
-  labels: []
-}
-
-const data3 = {
-  sectionTitle: "test title 3",
-  labels: [
-      {
-      title: 'test label 1',
-      color: colors.blue
-    },
-    {
-      title: 'test label 2',
-      color: colors.red
-    },
-    {
-      title: 'test label 3',
-      color: colors.green
-    }
-  ]
-}
-
-
 class LabelMenu extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      labels: []
+    }
+  }
+
+  componentDidMount() {
+    this.props.getLabels()
+  }
+
   render () {
+    const labels = this.props.labels
+
     return (
       <LabelMenuContainer>
-        <LabelListing
-          sectionTitle={data1.sectionTitle}
-          labels={data1.labels}
-        />
-        <LabelListing
-          sectionTitle={data2.sectionTitle}
-          labels={data2.labels}
-        />
-        <LabelListing
-          sectionTitle={data3.sectionTitle}
-          labels={data3.labels}
-        />
+        {labels.length > 0 && labels.map((item) => {
+          return <LabelListing
+            key={item._id}
+            sectionTitle={item.name}
+            labels={item.labels}
+          />
+        })}
       </LabelMenuContainer>
     )
   }
 }
 
-export default LabelMenu
+const mapStateToProps = (state) => ({
+  labels: state.labels.available
+})
+
+export default connect(mapStateToProps, { getLabels })(LabelMenu)

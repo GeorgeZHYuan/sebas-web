@@ -10,12 +10,12 @@ export default function(state = initialState, action) {
     case GET_LABELS:
       return {
         ...state,
-        active: action.payload
+        available: action.payload
       };
     case SET_ACTIVE_LABELS:
       return {
         ...state,
-        available: action.payload
+        active: action.payload
       };
     default:
       return state;
