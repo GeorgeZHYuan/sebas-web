@@ -2,7 +2,7 @@ import { GET_LABELS,  SET_ACTIVE_LABELS} from '../actions/actionTypes';
 
 const initialState = {
   active: [],
-  available: []
+  groups: []
 };
 
 export default function(state = initialState, action) {
@@ -10,7 +10,7 @@ export default function(state = initialState, action) {
     case GET_LABELS:
       return {
         ...state,
-        available: action.payload
+        groups: action.payload
       };
     case SET_ACTIVE_LABELS:
       return {

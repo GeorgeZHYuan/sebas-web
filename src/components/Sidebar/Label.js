@@ -17,7 +17,7 @@ const LabelTitle = styled.div`
 `
 
 const Label = (props) => {
-  return <LabelContainer>
+  return <LabelContainer onClick={() => props.onClick()}>
     <Circle style={{backgroundColor: `${props.color}` }} />
     <LabelTitle>{props.name}</LabelTitle>
   </LabelContainer>

@@ -1,5 +1,6 @@
 const colors = {
   themeBlue: "#3CA4FF",
+  lightBlue: "#AFEEEE",
   white: '#FFFFFF',
   black: "#000000",
   grey: '#DDDDDD',

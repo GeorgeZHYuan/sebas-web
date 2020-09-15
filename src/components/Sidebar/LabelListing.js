@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 import Label from './Label'
+import { setActiveLabels } from 'store/actions/labelActions'
 
 const LLContainer = styled.div`
   display: flex;
@@ -37,8 +39,12 @@ class LabelListing extends React.Component {
       sectionTitle: this.props.sectionTitle,
       labels: this.props.labels
     }
-
   }
+
+  toggleLabels(id) {
+    this.props.setActiveLabels(id)
+  }
+
   render () {
     return <LLContainer>
       <LLTitle>{this.state.sectionTitle}</LLTitle>
@@ -49,7 +55,8 @@ class LabelListing extends React.Component {
             return <Label
               key={item._id}
               color={item.color}
-              name={item.name}/>
+              name={item.name}
+              onClick={() => this.toggleLabels(item._id)}/>
           })}
         </LLListings>
       }
@@ -58,4 +65,6 @@ class LabelListing extends React.Component {
   }
 }
 
-export default LabelListing
+const mapStateToProps = (state) => ({})
+
+export default connect(mapStateToProps, { setActiveLabels })(LabelListing)

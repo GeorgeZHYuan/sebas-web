@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 
 import {
-  LabelMenu,
+  Sidebar,
   Workspace
 } from 'components'
 
@@ -21,7 +21,7 @@ function App() {
   return (
     <Provider store={store}>
       <AppContainer>
-        <LabelMenu />
+        <Sidebar />
         <Workspace />
       </AppContainer>
     </Provider>

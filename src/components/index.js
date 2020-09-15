@@ -1,11 +1,11 @@
 import KanBan from './KanBan'
-import LabelMenu from './Labels'
+import Sidebar from './Sidebar'
 import NavBar from './NavBar'
 import Workspace from './Workspace'
 
 export {
   KanBan,
-  LabelMenu,
+  Sidebar,
   NavBar,
   Workspace
 }

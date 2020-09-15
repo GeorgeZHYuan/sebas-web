@@ -7,7 +7,7 @@ import colors from 'styles'
 import LabelListing from './LabelListing'
 import { getLabels } from 'store/actions/labelActions'
 
-const LabelMenuContainer = styled.div`
+const SidebarContainer = styled.div`
   min-width: 150px;
   height: 100%;
   background-color: ${colors.themeBlue};
@@ -24,37 +24,31 @@ const LabelMenuContainer = styled.div`
   }
 `
 
-class LabelMenu extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      labels: []
-    }
-  }
-
+class Sidebar extends React.Component {
   componentDidMount() {
     this.props.getLabels()
   }
 
   render () {
-    const labels = this.props.labels
+    const groups = this.props.groups
 
     return (
-      <LabelMenuContainer>
-        {labels.length > 0 && labels.map((item) => {
+      <SidebarContainer>
+        {groups.length > 0 && groups.map(group => {
           return <LabelListing
-            key={item._id}
-            sectionTitle={item.name}
-            labels={item.labels}
+            key={group._id}
+            sectionTitle={group.name}
+            labels={group.labels}
           />
         })}
-      </LabelMenuContainer>
+      </SidebarContainer>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  labels: state.labels.available
+  groups: state.labels.groups,
+  activeLabels: state.labels.active
 })
 
-export default connect(mapStateToProps, { getLabels })(LabelMenu)
+export default connect(mapStateToProps, { getLabels })(Sidebar)
