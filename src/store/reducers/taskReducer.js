@@ -1,4 +1,7 @@
-import { GET_CARDS,  SET_ACTIVE_CARDS } from '../actions/actionTypes';
+import {
+  GET_TASKS,
+  SET_ACTIVE_TASKS
+} from '../actions/actionTypes';
 
 const initialState = {
   active: [],
@@ -7,12 +10,12 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_CARDS:
+    case GET_TASKS:
       return {
         ...state,
         available: action.payload
       };
-    case SET_ACTIVE_CARDS:
+    case SET_ACTIVE_TASKS:
       return {
         ...state,
         active: action.payload

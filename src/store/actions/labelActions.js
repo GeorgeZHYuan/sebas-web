@@ -8,11 +8,10 @@ import api from 'utils/api'
 
 // Get all Labels
 export const getLabels = () => async dispatch => {
-  console.log("got here")
   try {
     const res = await api.get('/labels')
-    const labels = {}
 
+    const labels = {}
     res.data.forEach((label) => {
       labels[`${label._id}`] = label
     })

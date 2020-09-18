@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   active: [],
-  labels: [],
+  available: [],
   groups: []
 };
 
@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
     case GET_LABELS:
       return {
         ...state,
-        labels: action.payload
+        available: action.payload
       };
     case GET_LABEL_GROUPS:
       return {

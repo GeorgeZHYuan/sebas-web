@@ -45,7 +45,6 @@ class LabelListing extends React.Component {
         <LLListings>
           {this.props.labelIds.map((id) => {
             const label = this.props.labels[id]
-            console.log(label)
 
             return <Label
               key={id}
@@ -60,7 +59,7 @@ class LabelListing extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  labels: state.labels.labels
+  labels: state.labels.available
 })
 
 export default connect((mapStateToProps), { setActiveLabels })(LabelListing)

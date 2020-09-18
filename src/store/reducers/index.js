@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import labelReducer from './labelReducer';
-import cardReducer from './cardReducer';
+import taskReducer from './taskReducer';
 
 export default combineReducers({
   labels: labelReducer,
-  cards: cardReducer
+  tasks: taskReducer
 });

@@ -43,12 +43,14 @@ class LabelSelector extends React.Component {
 
       {this.props.labels.length !== 0 &&
         <LSListings>
-          {this.props.labels.map((item, i) => {
+          {this.props.labelIds.map((id) => {
+            const label = this.props.labels[id]
+
             return <Label
-              key={item._id}
-              color={item.color}
-              name={item.name}
-              onClick={() => this.toggleSelection(item._id)}/>
+              key={id}
+              color={label.color}
+              name={label.name}
+              onClick={() => this.toggleSelections(id)}/>
           })}
         </LSListings>
       }
