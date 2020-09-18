@@ -1,6 +1,5 @@
-export const GET_LABELS = 'GET_LABELS';
+export const GET_LABELS = 'GET_LABELS'
 export const GET_LABEL_GROUPS = 'GET_LABEL_GROUPS'
-export const SET_ACTIVE_LABELS = 'SET_ACTIVE_LABELS';
+export const SET_ACTIVE_LABELS = 'SET_ACTIVE_LABELS'
 
-export const GET_TASKS = 'GET_TASKS'
-export const SET_ACTIVE_TASKS = 'SET_ACTIVE_TASKS';
+export const SET_TASKS = 'SET_TASKS'
