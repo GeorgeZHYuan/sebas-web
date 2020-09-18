@@ -33,38 +33,34 @@ const LLListings = styled.div`
 `
 
 class LabelListing extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      sectionTitle: this.props.sectionTitle,
-      labels: this.props.labels
-    }
-  }
-
   toggleLabels(id) {
     this.props.setActiveLabels(id)
   }
 
   render () {
     return <LLContainer>
-      <LLTitle>{this.state.sectionTitle}</LLTitle>
+      <LLTitle>{this.props.sectionTitle}</LLTitle>
 
-      {this.state.labels.length !== 0 &&
+      {this.props.labelIds.length !== 0 &&
         <LLListings>
-          {this.state.labels.map((item, i) => {
+          {this.props.labelIds.map((id) => {
+            const label = this.props.labels[id]
+            console.log(label)
+
             return <Label
-              key={item._id}
-              color={item.color}
-              name={item.name}
-              onClick={() => this.toggleLabels(item._id)}/>
+              key={id}
+              color={label.color}
+              name={label.name}
+              onClick={() => this.toggleLabels(id)}/>
           })}
         </LLListings>
       }
-
     </LLContainer>
   }
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  labels: state.labels.labels
+})
 
-export default connect(mapStateToProps, { setActiveLabels })(LabelListing)
+export default connect((mapStateToProps), { setActiveLabels })(LabelListing)

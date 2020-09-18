@@ -1,7 +1,12 @@
-import { GET_LABELS,  SET_ACTIVE_LABELS} from '../actions/actionTypes';
+import {
+  GET_LABELS,
+  GET_LABEL_GROUPS,
+  SET_ACTIVE_LABELS
+} from '../actions/actionTypes';
 
 const initialState = {
   active: [],
+  labels: [],
   groups: []
 };
 
@@ -10,8 +15,13 @@ export default function(state = initialState, action) {
     case GET_LABELS:
       return {
         ...state,
-        groups: action.payload
+        labels: action.payload
       };
+    case GET_LABEL_GROUPS:
+      return {
+        ...state,
+        groups: action.payload
+      }
     case SET_ACTIVE_LABELS:
       return {
         ...state,

@@ -1,5 +1,6 @@
 import {
   GET_LABELS,
+  GET_LABEL_GROUPS,
   SET_ACTIVE_LABELS
 } from './actionTypes'
 
@@ -7,10 +8,30 @@ import api from 'utils/api'
 
 // Get all Labels
 export const getLabels = () => async dispatch => {
+  console.log("got here")
+  try {
+    const res = await api.get('/labels')
+    const labels = {}
+
+    res.data.forEach((label) => {
+      labels[`${label._id}`] = label
+    })
+
+    dispatch({
+      type: GET_LABELS,
+      payload: labels
+    })
+  } catch (e) {
+    alert(e)
+  }
+}
+
+// Get all Labels Groups
+export const getLabelGroups = () => async dispatch => {
   try {
     const res = await api.get('/labelGroups')
     dispatch({
-      type: GET_LABELS,
+      type: GET_LABEL_GROUPS,
       payload: res.data
     })
   } catch (e) {
