@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { NavBar, KanBan } from 'components'
+import {
+  NavBar,
+  TaskDisplayer
+} from 'components'
 
 const WorkspaceContainer = styled.div`
   display: flex;
@@ -15,7 +18,7 @@ class Workspace extends React.Component {
     return (
       <WorkspaceContainer>
         <NavBar/>
-        <KanBan/>
+        <TaskDisplayer/>
       </WorkspaceContainer>
     )
   }

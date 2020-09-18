@@ -1,10 +1,10 @@
-import KanBan from './KanBan'
+import TaskDisplayer from './TaskDisplayer'
 import Sidebar from './Sidebar'
 import NavBar from './NavBar'
 import Workspace from './Workspace'
 
 export {
-  KanBan,
+  TaskDisplayer,
   Sidebar,
   NavBar,
   Workspace
