@@ -5,20 +5,20 @@ import { connect } from 'react-redux'
 import Label from './Label'
 import { setActiveLabels } from 'store/actions/labelActions'
 
-const LLContainer = styled.div`
+const LGContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 20px;
   padding-right: 20px;
 `
-const LLTitle = styled.h3`
+const LGTitle = styled.h3`
   margin-top: 0px;
   margin-bottom: 0px;
   padding-left: 0px;
   padding-right: 0px;
 `
 
-const LLListings = styled.div`
+const LGListings = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -32,15 +32,15 @@ const LLListings = styled.div`
   }
 `
 
-class LabelListing extends React.Component {
+class LabelGroup extends React.Component {
   toggleLabels(label) {
     this.props.setActiveLabels(label)
   }
 
   render () {
-    return <LLContainer>
-      <LLTitle>{this.props.sectionTitle}</LLTitle>
-      {this.props.labels.length > 0 && <LLListings>
+    return <LGContainer>
+      <LGTitle>{this.props.sectionTitle}</LGTitle>
+      {this.props.labels.length > 0 && <LGListings>
         {this.props.labels.map((label) => {
           return <Label
             key={label._id}
@@ -48,9 +48,9 @@ class LabelListing extends React.Component {
             name={label.name}
             onClick={() => this.toggleLabels(label)}/>
         })}
-      </LLListings>}
-    </LLContainer>
+      </LGListings>}
+    </LGContainer>
   }
 }
 
-export default connect(state => ({}), { setActiveLabels })(LabelListing)
+export default connect(state => ({}), { setActiveLabels })(LabelGroup)
