@@ -7,16 +7,28 @@ import { setActiveLabels } from 'store/actions/labelActions'
 
 const LFContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding-left: 20px;
   padding-right: 20px;
 `
-
 const LFTitle = styled.h3`
   margin-top: 0px;
   margin-bottom: 0px;
   padding-left: 0px;
   padding-right: 0px;
+`
+const LFListings = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  & > div:nth-child(n) {
+    margin-bottom: 10px;
+  }
+
+  & > div:last-child {
+    margin-bottom: 0px;
+  }
 `
 
 class LabelFilter extends React.Component {
@@ -25,24 +37,23 @@ class LabelFilter extends React.Component {
   }
 
   render() {
-    const activeLabels = this.props.activeLabels
-
     return <LFContainer>
-      <LFTitle>Active Labels</LFTitle>
-
-      {activeLabels.keys().length > 0 && activeLabels.map((label) => {
-        return <Label
-          key={label._id}
-          color={label.color}
-          name={label.name}
-          onClick={() => this.removeLabels(label)}/>
-      })}
+      <LFTitle>Filters</LFTitle>
+      <LFListings>
+        {this.props.filters.map((label) =>
+          <Label
+            key={label._id}
+            color={label.color}
+            name={label.name}
+            onClick={() => this.removeLabels(label)}/>
+        )}
+      </LFListings>
     </LFContainer>
   }
 }
 
 const mapStateToProps = (state) => ({
-  activeLabels: state.labels.active
+  filters: state.labels.active
 })
 
 export default connect(mapStateToProps, { setActiveLabels })(LabelFilter)

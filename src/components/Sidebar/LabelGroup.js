@@ -17,7 +17,6 @@ const LGTitle = styled.h3`
   padding-left: 0px;
   padding-right: 0px;
 `
-
 const LGListings = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,18 +36,18 @@ class LabelGroup extends React.Component {
     this.props.setActiveLabels(label)
   }
 
-  render () {
+  render() {
     return <LGContainer>
       <LGTitle>{this.props.sectionTitle}</LGTitle>
-      {this.props.labels.length > 0 && <LGListings>
-        {this.props.labels.map((label) => {
-          return <Label
+      <LGListings>
+        {this.props.labels.map((label) =>
+          <Label
             key={label._id}
             color={label.color}
             name={label.name}
             onClick={() => this.toggleLabels(label)}/>
-        })}
-      </LGListings>}
+        )}
+      </LGListings>
     </LGContainer>
   }
 }
