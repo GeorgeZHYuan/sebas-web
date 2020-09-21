@@ -20,7 +20,7 @@ export const getLabelGroups = () => async dispatch => {
 }
 
 export const setActiveLabels = (label) => async (dispatch, getState) => {
-  const activeLabels = getState().labels.active
+  const activeLabels = new Array(...getState().labels.active)
   const index = getActiveLabelIndex(label, activeLabels)
 
   if (index >= 0) {
