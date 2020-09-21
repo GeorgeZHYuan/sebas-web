@@ -3,8 +3,7 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  active: [],
-  available: []
+  active: []
 };
 
 export default function(state = initialState, action) {

@@ -5,10 +5,7 @@ import { connect } from 'react-redux'
 import colors from 'styles'
 
 import LabelListing from './LabelListing'
-import {
-  getLabels,
-  getLabelGroups
-} from 'store/actions/labelActions'
+import { getLabelGroups } from 'store/actions/labelActions'
 
 const SidebarContainer = styled.div`
   min-width: 150px;
@@ -29,7 +26,6 @@ const SidebarContainer = styled.div`
 
 class Sidebar extends React.Component {
   componentDidMount() {
-    this.props.getLabels()
     this.props.getLabelGroups()
   }
 
@@ -42,7 +38,7 @@ class Sidebar extends React.Component {
           return <LabelListing
             key={group._id}
             sectionTitle={group.name}
-            labelIds={group.labels}
+            labels={group.labels}
           />
         })}
       </SidebarContainer>
@@ -55,7 +51,4 @@ const mapStateToProps = (state) => ({
   activeLabels: state.labels.active
 })
 
-export default connect(
-  mapStateToProps,
-  { getLabelGroups, getLabels }
-)(Sidebar)
+export default connect(mapStateToProps, { getLabelGroups })(Sidebar)

@@ -40,17 +40,14 @@ class LabelListing extends React.Component {
   render () {
     return <LLContainer>
       <LLTitle>{this.props.sectionTitle}</LLTitle>
-
-      {this.props.labelIds.length !== 0 &&
+      {this.props.labels.length !== 0 &&
         <LLListings>
-          {this.props.labelIds.map((id) => {
-            const label = this.props.labels[id]
-
+          {this.props.labels.map((label) => {
             return <Label
-              key={id}
+              key={label._id}
               color={label.color}
               name={label.name}
-              onClick={() => this.toggleLabels(id)}/>
+              onClick={() => this.toggleLabels(label._id)}/>
           })}
         </LLListings>
       }
@@ -58,8 +55,4 @@ class LabelListing extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  labels: state.labels.available
-})
-
-export default connect((mapStateToProps), { setActiveLabels })(LabelListing)
+export default connect(state => ({}), { setActiveLabels })(LabelListing)
