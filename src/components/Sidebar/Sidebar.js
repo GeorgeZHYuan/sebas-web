@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import colors from 'styles'
 
 import LabelListing from './LabelListing'
+import LabelFilter from './LabelFilter'
 import { getLabelGroups } from 'store/actions/labelActions'
 
 const SidebarContainer = styled.div`
@@ -31,15 +32,17 @@ class Sidebar extends React.Component {
 
   render () {
     const groups = this.props.groups
+    const activeLabels = this.props.activeLabels
 
     return (
       <SidebarContainer>
+        {activeLabels.length > 0 && <LabelFilter/>}
+
         {groups.length > 0 && groups.map(group => {
           return <LabelListing
             key={group._id}
             sectionTitle={group.name}
-            labels={group.labels}
-          />
+            labels={group.labels}/>
         })}
       </SidebarContainer>
     )

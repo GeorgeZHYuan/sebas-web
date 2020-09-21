@@ -3,21 +3,15 @@ import { SET_TASKS } from './actionTypes'
 import api from 'utils/api'
 
 export const setTasks = () => async (dispatch, getState) => {
-  console.log("Trying to Set Tasks")
   try {
-    const ids = getState().labels.active.keys()
-
-    const query = ids.join("+")
-    const res = await api.get(`tasks/${query}`)
-
-    const tasks = {}
-    res.data.forEach((task) => {
-      tasks[`${task._id}`] = task
-    })
+    const activeLabels = getState().labels.active
+    const labelsIds = activeLabels.map(label => label._id)
+    const url = `tasks?labels=${labelsIds.join("+")}`
+    const res = await api.get(url)
 
     dispatch({
       type: SET_TASKS,
-      payload: tasks
+      payload: res.data
     })
   } catch (e) {
     alert(e)

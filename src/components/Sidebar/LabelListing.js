@@ -33,24 +33,22 @@ const LLListings = styled.div`
 `
 
 class LabelListing extends React.Component {
-  toggleLabels(id) {
-    this.props.setActiveLabels(id)
+  toggleLabels(label) {
+    this.props.setActiveLabels(label)
   }
 
   render () {
     return <LLContainer>
       <LLTitle>{this.props.sectionTitle}</LLTitle>
-      {this.props.labels.length !== 0 &&
-        <LLListings>
-          {this.props.labels.map((label) => {
-            return <Label
-              key={label._id}
-              color={label.color}
-              name={label.name}
-              onClick={() => this.toggleLabels(label._id)}/>
-          })}
-        </LLListings>
-      }
+      {this.props.labels.length > 0 && <LLListings>
+        {this.props.labels.map((label) => {
+          return <Label
+            key={label._id}
+            color={label.color}
+            name={label.name}
+            onClick={() => this.toggleLabels(label)}/>
+        })}
+      </LLListings>}
     </LLContainer>
   }
 }

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import TaskCard from './TaskCard'
+import { setTasks } from 'store/actions/taskActions'
 
 const TDContainer = styled.div`
   height: 100%;
@@ -10,6 +11,10 @@ const TDContainer = styled.div`
 `
 
 class TaskDisplayer extends React.Component {
+  componentDidMount() {
+    this.props.setTasks()
+  }
+
   render() {
     const tasks = this.props.tasks
 
@@ -26,7 +31,7 @@ class TaskDisplayer extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  tasks: state.tasks.active,
+  tasks: state.tasks.available,
 })
 
-export default connect(mapStateToProps, {})(TaskDisplayer)
+export default connect(mapStateToProps, {setTasks})(TaskDisplayer)
