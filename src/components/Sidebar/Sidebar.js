@@ -31,10 +31,10 @@ class Sidebar extends React.Component {
     this.props.getLabelGroups()
   }
 
-  render() {
+  render() {    
     return (
       <SidebarContainer>
-        <LabelFilter/>
+        {this.props.filters.length > 0 && <LabelFilter/>}
         {this.props.groups.map(group =>
           <LabelGroup
             key={group._id}
@@ -48,6 +48,7 @@ class Sidebar extends React.Component {
 
 const mapStateToProps = (state) => ({
   groups: state.labels.groups,
+  filters: state.labels.active
 })
 
 export default connect(mapStateToProps, { getLabelGroups })(Sidebar)

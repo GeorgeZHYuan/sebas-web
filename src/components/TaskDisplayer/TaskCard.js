@@ -5,7 +5,8 @@ const TCContainer = styled.div`
   border-radius: 25px;
   margin-bottom: 25px;
 `
-const TCTitle = styled.h3``
+const TCTitle = styled.h3`
+`
 
 class TaskCard extends React.Component {
   render() {

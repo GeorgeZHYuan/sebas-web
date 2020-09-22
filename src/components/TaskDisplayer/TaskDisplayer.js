@@ -16,10 +16,8 @@ class TaskDisplayer extends React.Component {
   }
 
   render() {
-    const tasks = this.props.tasks
-
     return <TDContainer>
-      {tasks.length !== 0 && tasks.map((task, id)=> {
+      {this.props.tasks.map((task, id)=> {
         return <TaskCard
           key={id}
           name={task.name}
