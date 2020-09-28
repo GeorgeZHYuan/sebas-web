@@ -4,7 +4,6 @@ import {
 } from './actionTypes'
 
 import api from 'utils/api'
-import { setTasks } from 'store/actions/taskActions'
 
 // Get all Labels Groups
 export const getLabelGroups = () => async dispatch => {
