@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
@@ -10,26 +11,37 @@ const TDContainer = styled.div`
   padding: 25px;
 `
 
-class TaskDisplayer extends React.Component {
-  componentDidMount() {
-    this.props.setTasks()
-  }
+const TaskDisplayer = ({
+  filters,
+  tasks,
+  setTasks
+}) => {
+  useEffect(() => {
+    setTasks(filters)
+  }, [setTasks, filters])
 
-  render() {
-    return <TDContainer>
-      {this.props.tasks.map((task, id)=> {
-        return <TaskCard
-          key={id}
-          name={task.name}
-        />
-      })}
-    </TDContainer>
-  }
+  return <TDContainer>
+    {tasks.map((task, id)=> {
+      return <TaskCard
+        key={id}
+        name={task.name}
+      />
+    })}
+  </TDContainer>
 }
 
+TaskDisplayer.propTypes = {
+  filters: PropTypes.array.isRequired,
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func
+};
 
 const mapStateToProps = (state) => ({
   tasks: state.tasks.available,
+  filters: state.labels.active
 })
 
-export default connect(mapStateToProps, {setTasks})(TaskDisplayer)
+export default connect(
+  mapStateToProps,
+  { setTasks }
+)(TaskDisplayer)

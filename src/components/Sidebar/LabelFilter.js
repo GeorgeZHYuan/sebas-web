@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
@@ -31,29 +32,31 @@ const LFListings = styled.div`
   }
 `
 
-class LabelFilter extends React.Component {
-  removeLabels(label) {
-    this.props.setActiveLabels(label)
-  }
-
-  render() {
-    return <LFContainer>
-      <LFTitle>Filters</LFTitle>
-      <LFListings>
-        {this.props.filters.map((label) =>
-          <Label
-            key={label._id}
-            color={label.color}
-            name={label.name}
-            onClick={() => this.removeLabels(label)}/>
-        )}
-      </LFListings>
-    </LFContainer>
-  }
+const LabelFilter = ({ filters, setActiveLabels }) => {
+  return <LFContainer>
+    <LFTitle>Filters</LFTitle>
+    <LFListings>
+      {filters.map((label) =>
+        <Label
+          key={label._id}
+          color={label.color}
+          name={label.name}
+          onClick={() => setActiveLabels(label)}/>
+      )}
+    </LFListings>
+  </LFContainer>
 }
+
+LabelFilter.propTypes = {
+  filters: PropTypes.array.isRequired,
+  setActiveLabels: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({
   filters: state.labels.active
 })
 
-export default connect(mapStateToProps, { setActiveLabels })(LabelFilter)
+export default connect(
+  mapStateToProps,
+  { setActiveLabels }
+)(LabelFilter)

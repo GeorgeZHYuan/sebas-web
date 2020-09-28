@@ -8,12 +8,10 @@ const TCContainer = styled.div`
 const TCTitle = styled.h3`
 `
 
-class TaskCard extends React.Component {
-  render() {
-    return <TCContainer>
-      <TCTitle>{this.props.name}</TCTitle>
-    </TCContainer>
-  }
+const TaskCard = ({ name }) => {
+  return <TCContainer>
+    <TCTitle>{name}</TCTitle>
+  </TCContainer>
 }
 
 export default TaskCard

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
 const LabelContainer = styled.div`
@@ -16,11 +17,21 @@ const LabelTitle = styled.div`
   word-wrap: normal;
 `
 
-const Label = (props) => {
-  return <LabelContainer onClick={() => props.onClick()}>
-    <Circle style={{backgroundColor: `${props.color}` }} />
-    <LabelTitle>{props.name}</LabelTitle>
+const Label = ({
+  color,
+  name,
+  onClick
+}) => {
+  return <LabelContainer onClick={() => onClick()}>
+    <Circle style={{backgroundColor: `${color}` }} />
+    <LabelTitle>{name}</LabelTitle>
   </LabelContainer>
 }
+
+Label.propTypes = {
+  name: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};
 
 export default Label

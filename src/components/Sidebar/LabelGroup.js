@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
@@ -31,25 +32,31 @@ const LGListings = styled.div`
   }
 `
 
-class LabelGroup extends React.Component {
-  toggleLabels(label) {
-    this.props.setActiveLabels(label)
-  }
-
-  render() {
-    return <LGContainer>
-      <LGTitle>{this.props.sectionTitle}</LGTitle>
-      <LGListings>
-        {this.props.labels.map((label) =>
-          <Label
-            key={label._id}
-            color={label.color}
-            name={label.name}
-            onClick={() => this.toggleLabels(label)}/>
-        )}
-      </LGListings>
-    </LGContainer>
-  }
+const LabelGroup = ({
+  sectionTitle,
+  labels,
+  setActiveLabels
+}) => {
+  return <LGContainer>
+    <LGTitle>{sectionTitle}</LGTitle>
+    <LGListings>
+      {labels.map((label) =>
+        <Label
+          key={label._id}
+          color={label.color}
+          name={label.name}
+          onClick={() => setActiveLabels(label)}/>
+      )}
+    </LGListings>
+  </LGContainer>
 }
 
-export default connect(state => ({}), { setActiveLabels })(LabelGroup)
+LabelGroup.propTypes = {
+  sectionTitle: PropTypes.string.isRequired,
+  setActiveLabels: PropTypes.func.isRequired
+};
+
+export default connect(
+  state => ({}),
+  { setActiveLabels }
+)(LabelGroup)

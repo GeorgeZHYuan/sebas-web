@@ -13,15 +13,11 @@ const WorkspaceContainer = styled.div`
   min-height: 100%;
 `
 
-class Workspace extends React.Component {
-  render() {
-    return (
-      <WorkspaceContainer>
-        <NavBar/>
-        <TaskDisplayer/>
-      </WorkspaceContainer>
-    )
-  }
+const Workspace = () => {
+    return <WorkspaceContainer>
+      <NavBar/>
+      <TaskDisplayer/>
+    </WorkspaceContainer>
 }
 
 export default Workspace

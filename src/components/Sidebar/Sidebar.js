@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
@@ -26,29 +27,39 @@ const SidebarContainer = styled.div`
   }
 `
 
-class Sidebar extends React.Component {
-  componentDidMount() {
-    this.props.getLabelGroups()
-  }
+const Sidebar = ({
+  filters,
+  groups,
+  getLabelGroups
+}) => {
+  useEffect(() => {
+    getLabelGroups()
+  }, [getLabelGroups])
 
-  render() {    
-    return (
-      <SidebarContainer>
-        {this.props.filters.length > 0 && <LabelFilter/>}
-        {this.props.groups.map(group =>
-          <LabelGroup
-            key={group._id}
-            sectionTitle={group.name}
-            labels={group.labels}/>
-        )}
-      </SidebarContainer>
-    )
-  }
+  return <SidebarContainer>
+    {filters.length > 0 && <LabelFilter/>}
+    {groups.map(group =>
+      <LabelGroup
+        key={group._id}
+        sectionTitle={group.name}
+        labels={group.labels}
+      />
+    )}
+  </SidebarContainer>
 }
+
+Sidebar.propTypes = {
+  filters: PropTypes.array.isRequired,
+  groups: PropTypes.array.isRequired,
+  setActiveLabels: PropTypes.func
+};
 
 const mapStateToProps = (state) => ({
   groups: state.labels.groups,
   filters: state.labels.active
 })
 
-export default connect(mapStateToProps, { getLabelGroups })(Sidebar)
+export default connect(
+  mapStateToProps,
+  { getLabelGroups }
+)(Sidebar)

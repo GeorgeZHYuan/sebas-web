@@ -33,7 +33,6 @@ export const setActiveLabels = (label) => async (dispatch, getState) => {
     type: SET_ACTIVE_LABELS,
     payload: activeLabels
   })
-  dispatch(setTasks())
 }
 
 // return index of active labels and -1 if not active
